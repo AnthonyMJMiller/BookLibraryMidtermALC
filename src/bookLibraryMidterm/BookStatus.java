@@ -1,5 +1,5 @@
 package bookLibraryMidterm;
 
-public enum Bookstatus {
+public enum BookStatus {
 	INLIBRARY, NOTAVAILABLE;
 }
