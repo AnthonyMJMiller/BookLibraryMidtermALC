@@ -1,7 +1,5 @@
 package bookLibraryMidterm;
-import java.util.*;
-
-import bookLibraryMidterm.ver1.BookSearch;
+import java.util.Scanner;
 public class TerminalApp {
 	static Scanner scnr = new Scanner(System.in);
 	public static void main(String[] args) {
