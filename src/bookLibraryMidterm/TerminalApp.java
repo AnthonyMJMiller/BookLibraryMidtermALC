@@ -1,4 +1,6 @@
 package bookLibraryMidterm;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 public class TerminalApp {
 	static Scanner scnr = new Scanner(System.in);
@@ -7,15 +9,22 @@ public class TerminalApp {
 		// System.out.println(BookInventory.bookArray());
 		//Inherit info from book class, like variables?
 		greetUser("Welcome to the DPL Library Terminal. How may i help you today?",scnr);
+
 	}
 	public static void greetUser(String prompt, Scanner scnr) {
 		System.out.println(prompt);
-		System.out.println("Terminal Key: 1-Display Current Inventory. 2-Search for a Book. 3-Check out a book. 4-Return a Book. ");
-		
+		System.out.println("1. Display all books");
+		System.out.println("2. Search by Keyword");
+		System.out.println("3. Search by Author");
+		System.out.println("4. Return book");
+		System.out.println("5. Quit");
+
 		int accessIDCheck = scnr.nextInt();
 		boolean isValid = false; 
 		int accessID = 0;
 		
+		ArrayList<Book> displayBooks = BookInventory.bookArray();
+
 		do {
 			if (accessIDCheck <= 4) {
 				accessID = accessIDCheck;
@@ -32,23 +41,22 @@ public class TerminalApp {
 		switch(accessID) {
 		
 		case 1:
-			currentInv();
+			BookInventory.listBooks(displayBooks);
+			String choice = Validator.getString(scnr, "Would you like to checkout one of these items? y/n");
+
 			break;
 		case 2:
-			bookSearch();
+			// BookSearch.searchByTitle();
 			break;
 		case 3:
-			bookCheckout();
+			BookSearch.searchByAuthor("test");
 			break;
 		case 4:
-			bookReturn();
+			// BookInventory.bookReturn();
 			break;
 		}
 	}
-	public static void currentInv() {
-		//method call to inventory class to receive list of books from text file.
-		System.out.println("FUNCTIONING!");
-	}
+
 	public static void bookSearch() {
 		BookSearch bs = new BookSearch();
 		
@@ -57,24 +65,16 @@ public class TerminalApp {
 		int userInput = scnr.nextInt();
 		scnr.nextLine();
 		
-		switch(userInput) {
-		case 1:
-			bs.searchByAuthor("Please enter the author name of the book you are looking for",scnr);
-			break;
-		case 2:
-			bs.searchByTitle();
-			break;
-		}
+//		switch(userInput) {
+//		case 1:
+//			bs.searchByAuthor("Please enter the author name of the book you are looking for",scnr);
+//			break;searchByTitle
+//		case 2:
+//			bs.searchByTitle();
+//			break;
+//		}
 	}
-	public static void bookCheckout() {
-		//method call to UserCart that will provide functions to store books from List-Type variable into another List Type that will hold the books 
-		//user wants to check out
-		System.out.println("FUNCTIONING!");
-	}
-	public static void bookReturn() {
-		//method call to Return class that will change the status of a book from checked-in to checked-out.
-		System.out.println("FUNCTIONING!");
-	}
+
 	
 
 }

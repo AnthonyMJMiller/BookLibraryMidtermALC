@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 //public static ArrayList<String> modifyName(ArrayList<String> names, int index) {
 //	names.set(index, "Grant Chirpus");
@@ -18,6 +19,7 @@ public class BookInventory {
 
 	private static Path filePath = Paths.get("books.txt");
 	private static File bookDBFile = filePath.toFile();
+	static Scanner scnr = new Scanner(System.in);
 
 	public static ArrayList<Book> bookArray() {
 
@@ -43,17 +45,43 @@ public class BookInventory {
 
 				Book book = new Book(bookID, bookInfo[1], bookInfo[2], bookEnum, bookDue);
 				bookList.add(book);
-				// System.out.println(bookID + " " + bookTitle + " " + bookAuthor + " " +
-				// bookEnum + " " + bookDue);
+
 				line = readbook.readLine();
 
 			}
-//			System.out.println(bookList.toString());
+			// System.out.println(bookList.toString());
 			readbook.close();
 		} catch (IOException ex) {
 			System.out.println(ex.getMessage());
 		}
 		return bookList;
+	}
+
+	public static void listBooks(ArrayList<Book> bookList) {
+
+		for (int i = 0; i < bookList.size(); i++) {
+			Book b = bookList.get(i);
+			System.out.printf("\n%-12d%-30s%-30s%-12s", b.getBookID(), b.getBookTitle(), b.getBookAuthor(),
+					b.getBookStatus());
+		}
 
 	}
+
+	public static void bookCheckout(ArrayList<Book> bookList) {
+		for (int i = 0; i < bookList.size(); i++) {
+			Book b = bookList.get(i);
+
+			if (b.getBookStatus() == BookStatus.INLIBRARY) {
+
+			}
+
+		}
+	}
+
+	public static void bookReturn(ArrayList<Book> bookList) {
+		// method call to Return class that will change the status of a book from
+		// checked-in to checked-out.
+		System.out.println("FUNCTIONING!");
+	}
+
 }
