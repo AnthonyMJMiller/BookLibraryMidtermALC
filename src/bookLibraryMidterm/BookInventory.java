@@ -48,7 +48,7 @@ public class BookInventory {
 				line = readbook.readLine();
 
 			}
-			System.out.println(bookList.toString());
+//			System.out.println(bookList.toString());
 			readbook.close();
 		} catch (IOException ex) {
 			System.out.println(ex.getMessage());

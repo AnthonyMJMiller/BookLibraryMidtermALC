@@ -6,15 +6,15 @@ public class Book {
 	
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/YYYY");
 	private int bookID;
-	private String bookTitle;
 	private String bookAuthor;
+	private String bookTitle;
 	private BookStatus bookStatus;
 	private LocalDate bookDue;
 	
 	public Book (int bookID, String bookTitle, String bookAuthor, BookStatus bookStatus, LocalDate bookDue) {
 		this.bookID = bookID;
-		this.bookTitle = bookTitle;
 		this.bookAuthor = bookAuthor;
+		this.bookTitle = bookTitle;
 		this.bookStatus = bookStatus;
 		this.bookDue = bookDue;
 	}

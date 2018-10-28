@@ -1,84 +1,99 @@
 package bookLibraryMidterm;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class BookSearch {
-		HashMap <String, String> chosenBook = new HashMap<>();//these arrays should be inherited from inventory class
-		ArrayList <String> bookAuthor = new ArrayList<>(30);
-		ArrayList <String> bookTitle = new ArrayList<>(30);
-		Scanner scnr = new Scanner(System.in);
-		String regex = "\\wds";
+	static ArrayList<Book> chosenBook = new ArrayList<>();
+	ArrayList<String> bookAuthor = new ArrayList<>(30);
+	ArrayList<String> bookTitle = new ArrayList<>(30);
+	static Scanner scnr = new Scanner(System.in);
+
+	public static void main(String[] args) {
 		
-		
+//		for (int i = 0; i < BookInventory.bookArray().size(); i++) {
+//			System.out.println(BookInventory.bookArray().get(i));// test information
+//		}
+//		String userSearch = Validator.getString(scnr, "Please enter author name.");
+//		searchByAuthor(userSearch);
+//		System.out.println("Add to cart? (Y/N)");
+//
+//		String cartAdd = scnr.nextLine();
+//
+//		if (cartAdd.equalsIgnoreCase("Y")) {
+//			// pass in status of book to be able to determine if it can be checked out if so
+//			// add current book information to usercart list-type variable
+//		} else if (cartAdd.equalsIgnoreCase("N")) {
+//			System.out.println("Okay, returning to home...");
+//		} else {
+//			System.out.println("Sorry, search could not be completed - Contact Help Desk...");
+//			
+//		}
+//		scnr.close();
+	}
+
 	public BookSearch() {
-		
+
+	}
+
+	public static void searchByAuthor(String userSearch) {
+		boolean tryAgain = true;
+		String enter;
+		while (tryAgain = true) {
+			do {
+			for (int i = 0; i < BookInventory.bookArray().size(); i++) {
+				if (BookInventory.bookArray().get(i).getBookAuthor().contains(userSearch)) {
+					System.out.println(BookInventory.bookArray().get(i));
+					chosenBook.add(BookInventory.bookArray().get(i));
+					tryAgain = false;
+				} else {
+					System.out.println("No matches! Please try again.");
+					userSearch = Validator.getString(scnr, "Please enter author name: ");
+				}
+					
+					
+				}
+			enter = Validator.getString(scnr, "Do you want to find another book? (Y/N)");
+			while (!enter.equalsIgnoreCase("Y") && !enter.equalsIgnoreCase("N")) {
+				enter = Validator.getString(scnr, "Error! Please type Y or N: ");
+			}
+			if (enter.equalsIgnoreCase("Y")) {
+				tryAgain = true;
+			}
+			} while (enter.equalsIgnoreCase("Y"));
+			
+				
+			
+		}
 		
 	}
-	public void searchByAuthor(String prompt,Scanner scnr) {
-		chosenBook.put("Dr. Doom", "How to finally defeat Mr. Fantastic");//test information
-		
-		System.out.println(prompt);
-		String userSearch = scnr.nextLine();
-		
-		if (userSearch.matches(regex)) {
-			try {
-			String bookTitle = chosenBook.get(userSearch);
-			String bookAuthor = userSearch;
+
+	public void searchByTitle(String userSearch) {
+		boolean tryAgain = true;
+		String enter;
+		while (tryAgain = true) {
+			for (int i = 0; i < BookInventory.bookArray().size(); i++) {
+				if (BookInventory.bookArray().get(i).getBookTitle().contains(userSearch)) {
+					System.out.println(BookInventory.bookArray().get(i));
+					tryAgain = false;
+				} else {
+					System.out.println("No matches! Please try again.");
+					userSearch = Validator.getString(scnr, "Please enter title name: ");
+				}
+			}
+			enter = Validator.getString(scnr, "Do you want to find another book? (Y/N)");
+			while (!enter.equalsIgnoreCase("Y") && !enter.equalsIgnoreCase("N")) {
+				enter = Validator.getString(scnr, "Error! Please type Y or N: ");
+			}
+			if (enter.equalsIgnoreCase("Y")) {
+				tryAgain = true;
+			}
+			} while (enter.equalsIgnoreCase("Y"));
 			
-			System.out.println("Were you looking for - " + bookTitle + " by " + bookAuthor + "?");
-			System.out.println("Add to cart? (Y/N)");
+				
 			
-			String cartAdd = scnr.nextLine();
-			
-			if (cartAdd.equalsIgnoreCase("Y")){
-				//pass in status of book to be able to determine if it can be checked out if so
-				//add current book information to usercart list-type variable
-			}
-			else if(cartAdd.equalsIgnoreCase("N")){
-				System.out.println("Okay, returning to home...");
-			}
-			}
-			catch(Exception e) {
-				System.out.println("Sorry but that author did not register to a book currently in our inventory.");
-			}
 		}
-		else {
-			System.out.println("Sorry, search could not be completed - Contact Help Desk...");
-			System.out.println(userSearch);
-		}
+
 	}
-	public void searchByTitle() {
-		chosenBook.put("Dr. Doom", "How to finally defeat Mr. Fantastic");//test information
-		
-		String userSearch = scnr.nextLine();
-		
-		if (userSearch.matches(regex)) {
-			if(chosenBook.containsValue(userSearch)) {
-				try {
-					String bookAuthor = null; //return key to confirmed value for book title.
-					String bookTitle = userSearch;
-					
-					System.out.println("Were you looking for - " + bookTitle + " by " + bookAuthor + "?");
-					System.out.println("Add to cart? (Y/N)");
-					
-					String cartAdd = scnr.nextLine();
-					
-					if (cartAdd.equalsIgnoreCase("Y")){
-						//pass in status of book to be able to determine if it can be checked out if so
-						//add current book information to usercart list-type variable
-					}
-					else if(cartAdd.equalsIgnoreCase("N")){
-						System.out.println("Okay, returning to home...");
-					}
-					}
-					catch(Exception e) {
-						System.out.println("Sorry but that author did not register to a book currently in our inventory.");
-					}
-			}
-		}
-	}
-	
-	
-}
+
+
