@@ -1,2 +1,2 @@
-1,The Confessions,Jean-Jacques Rousseau,INLIBRARY,2020-02-15
-2,The Art of Loving,Erich Fromm,CHECKEDOUT,2019-01-05
+1,The Confessions,Jean-Jacques Rousseau,INLIBRARY
+2,The Art of Loving,Erich Fromm,CHECKEDOUT

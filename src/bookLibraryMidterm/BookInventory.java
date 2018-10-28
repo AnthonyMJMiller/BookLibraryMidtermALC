@@ -2,8 +2,10 @@ package bookLibraryMidterm;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
@@ -18,7 +20,7 @@ import java.util.Scanner;
 public class BookInventory {
 
 	private static Path filePath = Paths.get("books.txt");
-	private static File bookDBFile = filePath.toFile();
+	private static File bookInventoryFile = filePath.toFile();
 	static Scanner scnr = new Scanner(System.in);
 
 	public static ArrayList<Book> bookArray() {
@@ -26,13 +28,14 @@ public class BookInventory {
 		ArrayList<Book> bookList = new ArrayList<Book>();
 
 		try {
-			FileReader readTxt = new FileReader(bookDBFile);
+			FileReader readTxt = new FileReader(bookInventoryFile);
 			// LineNumberReader linesNum = new LineNumberReader(readTxt);
 			BufferedReader readbook = new BufferedReader(readTxt);
 
 			String[] bookInfo = new String[5];
 
 			String line = readbook.readLine();
+
 			while (line != null) {
 				bookInfo = line.split(",");
 
@@ -56,7 +59,7 @@ public class BookInventory {
 	}
 
 	public static void listBooks(ArrayList<Book> bookList) {
-		//ArrayList<Book> bookList = BookInventory.bookArray();
+		// ArrayList<Book> bookList = BookInventory.bookArray();
 		for (int i = 0; i < bookList.size(); i++) {
 			Book b = bookList.get(i);
 			System.out.printf("\n%-12d%-30s%-30s%-12s", b.getBookID(), b.getBookTitle(), b.getBookAuthor(),
@@ -69,7 +72,6 @@ public class BookInventory {
 		} else {
 			System.out.println("false?");
 		}
-
 
 	}
 
@@ -108,6 +110,26 @@ public class BookInventory {
 				System.out.println("Sorry, this book cannot be returned.");
 			}
 		}
+	}
+
+	public static void writeBooksTxt(ArrayList<Book> bookList) {
+
+		try {
+			PrintWriter out = new PrintWriter(new FileOutputStream(bookInventoryFile));
+
+			for (int i = 0; i < bookList.size(); i++) {
+				String record = bookList.get(i).getBookID() + "," + bookList.get(i).getBookTitle() + ","
+						+ bookList.get(i).getBookAuthor() + "," + bookList.get(i).getBookStatus() + "\r\n";
+				System.out.println(record);
+				out.write(record);
+
+			}
+
+			out.close();
+		} catch (IOException ex) {
+			System.out.println(ex.getMessage());
+		}
+
 	}
 
 }
