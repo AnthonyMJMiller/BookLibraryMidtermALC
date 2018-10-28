@@ -15,7 +15,7 @@ public class BookSearch {
 			System.out.println(BookInventory.bookArray().get(i));// test information
 		}
 
-		searchByTitle();
+		searchByAuthor();
 //		System.out.println("Add to cart? (Y/N)");
 //
 //		String cartAdd = scnr.nextLine();
@@ -39,63 +39,59 @@ public class BookSearch {
 	public static void searchByAuthor() {
 		boolean tryAgain = true;
 		String enter;
-
-		while (tryAgain) {
+		do {
+			while (tryAgain) {
 			String userSearch = Validator.getString(scnr, "Please enter author name: ");
-			for (int i = 0; i < BookInventory.bookArray().size(); i++) {
-				if (BookInventory.bookArray().get(i).getBookAuthor().contains(userSearch)) {
-					System.out.println(BookInventory.bookArray().get(i));
-					chosenBook.add(BookInventory.bookArray().get(i));
-					tryAgain = false;
+			
+				for (int i = 0; i < BookInventory.bookArray().size(); i++) {
+					if (BookInventory.bookArray().get(i).getBookAuthor().contains(userSearch)) {
+						System.out.println(BookInventory.bookArray().get(i));
+						chosenBook.add(BookInventory.bookArray().get(i));
+						tryAgain = false;
+					}
+
+				}
+				if (tryAgain) {
+					System.out.println("No matches! Please try again.");
 				}
 
-			}
-			if (tryAgain) {
-				System.out.println("No matches! Please try again.");
-				userSearch = Validator.getString(scnr, "Please enter author name: ");
-			}
+		} 
 			enter = Validator.getString(scnr, "Do you want to find another book? (Y/N)");
 			while (!enter.equalsIgnoreCase("Y") && !enter.equalsIgnoreCase("N")) {
 				enter = Validator.getString(scnr, "Error! Please type Y or N: ");
 			}
-			if (enter.equalsIgnoreCase("N")) {
-				break;
-			} else {
+			if (enter.equalsIgnoreCase("Y")) {
 				tryAgain = true;
 			}
 
-		}
-
+		} while (enter.equalsIgnoreCase("Y"));
 	}
 
 	public static void searchByTitle() {
 		boolean tryAgain = true;
 		String enter;
-		
-		while (tryAgain = true) {
-			String userSearch = Validator.getString(scnr, "Please enter author name: ");
-			for (int i = 0; i < BookInventory.bookArray().size(); i++) {
-				if (BookInventory.bookArray().get(i).getBookTitle().contains(userSearch)) {
-					System.out.println(BookInventory.bookArray().get(i));
-					chosenBook.add(BookInventory.bookArray().get(i));
-					tryAgain = false;
+		do {
+			while (tryAgain) {
+				String userSearch = Validator.getString(scnr, "Please enter title name: ");
+				for (int i = 0; i < BookInventory.bookArray().size(); i++) {
+					if(BookInventory.bookArray().get(i).getBookTitle().contains(userSearch)) {
+						System.out.println(BookInventory.bookArray().get(i));
+						chosenBook.add(BookInventory.bookArray().get(i));
+						tryAgain = false;
+					} 
 				}
-			}
-			if (tryAgain) {
-				System.out.println("No matches! Please try again.");
-				userSearch = Validator.getString(scnr, "Please enter author name: ");
+				if (tryAgain) {
+					System.out.println("No matches! Please try again.");
+				}
+
 			}
 			enter = Validator.getString(scnr, "Do you want to find another book? (Y/N)");
 			while (!enter.equalsIgnoreCase("Y") && !enter.equalsIgnoreCase("N")) {
 				enter = Validator.getString(scnr, "Error! Please type Y or N: ");
 			}
-			if (enter.equalsIgnoreCase("N")) {
-				break;
-			} else {
+			if (enter.equalsIgnoreCase("Y")) {
 				tryAgain = true;
 			}
-
-		}
-
+		} while (enter.equalsIgnoreCase("Y"));
 	}
 }

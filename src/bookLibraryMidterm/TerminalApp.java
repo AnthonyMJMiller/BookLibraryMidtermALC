@@ -12,6 +12,7 @@ public class TerminalApp {
 		do {
 			greetUser();
 			userSelect();
+			isValid = true;
 		} while (!isValid);
 
 	}
@@ -34,10 +35,10 @@ public class TerminalApp {
 			BookInventory.listBooks();
 
 		case 2:
-			// BookSearch.searchByTitle();
+			BookSearch.searchByTitle();
 			break;
 		case 3:
-			BookSearch.searchByAuthor("test");
+			BookSearch.searchByAuthor();
 			break;
 		case 4:
 			BookInventory.bookReturn();
