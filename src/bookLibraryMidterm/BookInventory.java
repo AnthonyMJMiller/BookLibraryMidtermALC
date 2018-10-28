@@ -121,7 +121,7 @@ public class BookInventory {
 				String record = bookList.get(i).getBookID() + "," + bookList.get(i).getBookTitle() + ","
 						+ bookList.get(i).getBookAuthor() + "," + bookList.get(i).getBookStatus() + "\r\n";
 				// System.out.println(record);
-				out.write(record);
+				out.println(record);
 
 			}
 
