@@ -1,5 +1,6 @@
 package bookLibraryMidterm;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TerminalApp {
@@ -9,10 +10,10 @@ public class TerminalApp {
 
 		boolean isValid = false;
 
-		do {
+		// do {
 			greetUser();
 			userSelect();
-		} while (!isValid);
+		// } while (!isValid);
 
 	}
 
@@ -26,18 +27,20 @@ public class TerminalApp {
 	}
 
 	public static void userSelect() {
+
+		ArrayList<Book> displayBooks = BookInventory.bookArray();
 		int accessID = Validator.getInt(scnr, "Please select a menu item: ", 1, 5);
 
 		switch (accessID) {
 
 		case 1:
-			BookInventory.listBooks();
+			BookInventory.listBooks(displayBooks);
 
 		case 2:
-			// BookSearch.searchByTitle();
+			BookSearch.searchByTitle();
 			break;
 		case 3:
-			BookSearch.searchByAuthor("test");
+			BookSearch.searchByAuthor();
 			break;
 		case 4:
 			BookInventory.bookReturn();
@@ -45,13 +48,13 @@ public class TerminalApp {
 		}
 	}
 
-	public static void bookSearch() {
-		BookSearch bs = new BookSearch();
-
-		System.out.println("Would you like to search by author or by title?");
-		System.out.println("Key: 1-Author. 2-Title.");
-		int userInput = scnr.nextInt();
-		scnr.nextLine();
+//	public static void bookSearch() {
+//		BookSearch bs = new BookSearch();
+//
+//		System.out.println("Would you like to search by author or by title?");
+//		System.out.println("Key: 1-Author. 2-Title.");
+//		int userInput = scnr.nextInt();
+//		scnr.nextLine();
 
 //		switch(userInput) {
 //		case 1:
@@ -61,6 +64,6 @@ public class TerminalApp {
 //			bs.searchByTitle();
 //			break;
 //		}
-	}
+//	}
 
 }
