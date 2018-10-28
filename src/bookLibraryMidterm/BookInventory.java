@@ -55,8 +55,13 @@ public class BookInventory {
 		return bookList;
 	}
 
-	public static void listBooks() {
-		ArrayList<Book> bookList = BookInventory.bookArray();
+	public static void listBooks(ArrayList<Book> bookList) {
+		//ArrayList<Book> bookList = BookInventory.bookArray();
+		for (int i = 0; i < bookList.size(); i++) {
+			Book b = bookList.get(i);
+			System.out.printf("\n%-12d%-30s%-30s%-12s", b.getBookID(), b.getBookTitle(), b.getBookAuthor(),
+					b.getBookStatus());
+		}
 		String choice = Validator.getString(scnr, "\nWould you like to checkout one of these items? y/n ");
 
 		if (choice.equalsIgnoreCase("y")) {
@@ -65,11 +70,6 @@ public class BookInventory {
 			System.out.println("false?");
 		}
 
-		for (int i = 0; i < bookList.size(); i++) {
-			Book b = bookList.get(i);
-			System.out.printf("\n%-12d%-30s%-30s%-12s", b.getBookID(), b.getBookTitle(), b.getBookAuthor(),
-					b.getBookStatus());
-		}
 
 	}
 
