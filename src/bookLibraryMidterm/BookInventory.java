@@ -23,7 +23,6 @@ public class BookInventory {
 
 	public static ArrayList<Book> bookArray() {
 
-
 		ArrayList<Book> bookList = new ArrayList<Book>();
 
 		try {
@@ -42,7 +41,6 @@ public class BookInventory {
 				BookStatus bookEnum = BookStatus.valueOf(bookInfo[3]);
 				LocalDate bookDue = LocalDate.parse(bookInfo[4]);
 
-
 				Book book = new Book(bookID, bookInfo[1], bookInfo[2], bookEnum, bookDue);
 				bookList.add(book);
 
@@ -57,7 +55,15 @@ public class BookInventory {
 		return bookList;
 	}
 
-	public static void listBooks(ArrayList<Book> bookList) {
+	public static void listBooks() {
+		ArrayList<Book> bookList = BookInventory.bookArray();
+		String choice = Validator.getString(scnr, "\nWould you like to checkout one of these items? y/n ");
+
+		if (choice.equalsIgnoreCase("y")) {
+			bookCheckout(bookList);
+		} else {
+			System.out.println("false?");
+		}
 
 		for (int i = 0; i < bookList.size(); i++) {
 			Book b = bookList.get(i);
@@ -68,20 +74,40 @@ public class BookInventory {
 	}
 
 	public static void bookCheckout(ArrayList<Book> bookList) {
+		// change method so scanner not redeclared everywhere
+		int index = Validator.getInt(scnr, "Which book would you like to check out? (please enter the book ID) ");
+
 		for (int i = 0; i < bookList.size(); i++) {
 			Book b = bookList.get(i);
+			if (b.getBookID() == (index)) {
+				if (b.getBookStatus() == BookStatus.INLIBRARY) {
+					b.setBookStatus(BookStatus.CHECKEDOUT);
+					LocalDate due = LocalDate.now();
+					b.setBookDue(due.plusDays(14));
+					System.out.println("Successfully checked out and due on " + b.getBookDue());
 
-			if (b.getBookStatus() == BookStatus.INLIBRARY) {
-
+				} else {
+					System.out.println("Sorry, this book is unavailable.");
+				}
 			}
-
 		}
 	}
 
-	public static void bookReturn(ArrayList<Book> bookList) {
-		// method call to Return class that will change the status of a book from
-		// checked-in to checked-out.
-		System.out.println("FUNCTIONING!");
+	public static void bookReturn() {
+		int index = Validator.getInt(scnr, "Which book would you like to return? (please enter the book ID) ");
+
+		ArrayList<Book> bookList = BookInventory.bookArray();
+
+		for (int i = 0; i < bookList.size(); i++) {
+			Book bReturn = bookList.get(i);
+			if (bReturn.getBookID() == (index)) {
+				bReturn.setBookStatus(BookStatus.INLIBRARY);
+				bReturn.setBookDue(null);
+				System.out.println("Successfully returned " + bReturn.getBookTitle());
+			} else {
+				System.out.println("Sorry, this book cannot be returned.");
+			}
+		}
 	}
 
 }
