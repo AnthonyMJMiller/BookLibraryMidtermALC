@@ -120,7 +120,7 @@ public class BookInventory {
 			for (int i = 0; i < bookList.size(); i++) {
 				String record = bookList.get(i).getBookID() + "," + bookList.get(i).getBookTitle() + ","
 						+ bookList.get(i).getBookAuthor() + "," + bookList.get(i).getBookStatus() + "\r\n";
-				System.out.println(record);
+				// System.out.println(record);
 				out.write(record);
 
 			}
