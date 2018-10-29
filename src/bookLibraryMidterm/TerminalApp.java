@@ -6,22 +6,27 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 public class TerminalApp extends TerminalAppGUI {
+	/*
+	 * Made variables universal in class to cut redundancy using same variables in
+	 * each method
+	 */
 	static Scanner scnr = new Scanner(System.in);
 	static boolean cont = true;
 	static ArrayList<Book> bookList = BookInventory.bookArray();
 
 	public static void main(String[] args) {
+		// We utilized GUI for user interaction in Library Terminal program
 		new TerminalAppGUI().setVisible(true);
 		
 		System.out.println("Welcome to Art Garfunkel's Library Terminal.\n");
-
+		/*
+		 *  While loop w/boolean to loop back to main menu until exit option
+		 *  selected
+		 */
 		while (cont) {
 			greetUser();
 			userSelect();
-//			String userChoice = Validator.getYN(scnr, "Would you like to return to the main menu? y/n ");
-//			if (userChoice.equalsIgnoreCase("n")) {
-//				cont = false;
-//			}
+
 		}
 		BookInventory.writeBooksTxt(bookList);
 		System.out.println("Goodbye! Thank you for visiting your virtual library.");
@@ -40,7 +45,10 @@ public class TerminalApp extends TerminalAppGUI {
 	}
 
 	public static void userSelect() {
-		
+		/*
+		 *  We take in a number from user and use that number to navigate via case
+		 *  switch
+		 */
 		int accessID = Validator.getInt("\nPlease select a menu item: ", 1, 5);
 		
 		switch (accessID) {
@@ -63,6 +71,7 @@ public class TerminalApp extends TerminalAppGUI {
 			BookInventory.bookReturn(bookList);
 			break;
 		case 5:
+			// Writes to books.txt file before exiting to save last interaction(s)
 			BookInventory.writeBooksTxt(bookList);
 			System.out.println("Goodbye! Thank you for visiting.");
 			System.exit(0);
