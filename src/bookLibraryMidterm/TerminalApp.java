@@ -3,13 +3,16 @@ package bookLibraryMidterm;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class TerminalApp {
+import javax.swing.JOptionPane;
+
+public class TerminalApp extends TerminalAppGUI {
 	static Scanner scnr = new Scanner(System.in);
 	static boolean cont = true;
 	static ArrayList<Book> bookList = BookInventory.bookArray();
 
 	public static void main(String[] args) {
-
+		new TerminalAppGUI().setVisible(true);
+		
 		System.out.println("Welcome to Art Garfunkel's Library Terminal.\n");
 
 		while (cont) {
@@ -37,14 +40,14 @@ public class TerminalApp {
 	}
 
 	public static void userSelect() {
-
-		int accessID = Validator.getInt(scnr, "\nPlease select a menu item: ", 1, 5);
-
+		
+		int accessID = Validator.getInt("\nPlease select a menu item: ", 1, 5);
+		
 		switch (accessID) {
 
 		case 1:
 			BookInventory.listBooks(bookList);
-			String choice = Validator.getYN(scnr, "Would you like to checkout one of these items? y/n ");
+			String choice = Validator.getYN("Would you like to checkout one of these items? y/n ");
 
 			if (choice.equalsIgnoreCase("y")) {
 				BookInventory.bookCheckout(bookList);
