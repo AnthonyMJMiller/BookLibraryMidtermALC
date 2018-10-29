@@ -24,7 +24,7 @@ public class BookSearch {
 				System.out.println("------------------------------------------------------------------");
 
 				for (int i = 0; i < BookInventory.bookArray().size(); i++) {
-					if (BookInventory.bookArray().get(i).getBookAuthor().contains(userSearch)) {
+					if (BookInventory.bookArray().get(i).getBookAuthor().toLowerCase().contains(userSearch.toLowerCase())) {
 						Book b = bookList.get(i);
 
 						System.out.printf("\n%-5d%-30s%-25s%-12s", b.getBookID(), b.getBookTitle(), b.getBookAuthor(),
@@ -61,7 +61,7 @@ public class BookSearch {
 				System.out.printf("\n%-4s %-28s %-24s %-5s\n", "ID", "Title", "Author", "Status");
 				System.out.println("------------------------------------------------------------------");
 				for (int i = 0; i < BookInventory.bookArray().size(); i++) {
-					if(BookInventory.bookArray().get(i).getBookTitle().contains(userSearch)) {
+					if(BookInventory.bookArray().get(i).getBookTitle().toLowerCase().contains(userSearch.toLowerCase())) {
 						Book b = bookList.get(i);
 
 						System.out.printf("\n%-5d%-30s%-25s%-12s", b.getBookID(), b.getBookTitle(), b.getBookAuthor(),
