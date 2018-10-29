@@ -10,6 +10,40 @@ public class Validator {
 		return s;
 	}
 
+	public static String getYN(Scanner scan, String prompt) {
+		boolean isValid = false;
+		String sc;
+
+		do {
+			sc = getString(scan, prompt);
+			if (sc.equalsIgnoreCase("y") || sc.equalsIgnoreCase("n")) {
+				isValid = true;
+			} else {
+				System.out.println("Please enter y or n.");
+				isValid = false;
+			}
+		} while (!isValid);
+
+		return sc;
+	}
+
+	public static String getStringMatchingRegex(Scanner scan, String prompt, String fail, String regex) {
+		boolean isValid = false;
+		String input;
+
+		do {
+			input = getString(scan, prompt);
+			if (input.matches(regex)) {
+				isValid = true;
+			} else {
+				System.out.println(fail);
+				isValid = false;
+			}
+		} while (!isValid);
+
+		return input;
+	}
+
 	public static int getInt(Scanner sc, String prompt) {
 		int i = 0;
 		boolean isValid = false;
@@ -19,7 +53,7 @@ public class Validator {
 				i = sc.nextInt();
 				isValid = true;
 			} else {
-				System.out.println("Error! Invalid integer value. Try again.");
+				System.out.print("Please enter a valid number: ");
 			}
 			sc.nextLine(); // discard any other data entered on the line
 		}
@@ -32,9 +66,9 @@ public class Validator {
 		while (isValid == false) {
 			i = getInt(sc, prompt);
 			if (i < min)
-				System.out.println("Error! Number must be " + min + " or greater.");
+				System.out.println("Menu item must be " + min + " or greater.");
 			else if (i > max)
-				System.out.println("Error! Number must be " + max + " or less.");
+				System.out.println("Menu item must be " + max + " or less.");
 			else
 				isValid = true;
 		}
@@ -72,20 +106,4 @@ public class Validator {
 		return d;
 	}
 
-	public static String getStringMatchingRegex(Scanner scan, String prompt, String fail, String regex) {
-		boolean isValid = false;
-		String input;
-
-		do {
-			input = getString(scan, prompt);
-			if (input.matches(regex)) {
-				isValid = true;
-			} else {
-				System.out.println(fail);
-				isValid = false;
-			}
-		} while (!isValid);
-
-		return input;
-	}
 }

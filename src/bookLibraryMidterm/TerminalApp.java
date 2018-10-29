@@ -10,13 +10,15 @@ public class TerminalApp {
 
 	public static void main(String[] args) {
 
+		System.out.println("Welcome to Art Garfunkel's Library Terminal.\n");
+
 		while (cont) {
 			greetUser();
 			userSelect();
-			String userChoice = Validator.getString(scnr, "Would you like to return to the main menu? y/n ");
-			if (userChoice.equalsIgnoreCase("n")) {
-				cont = false;
-			}
+//			String userChoice = Validator.getYN(scnr, "Would you like to return to the main menu? y/n ");
+//			if (userChoice.equalsIgnoreCase("n")) {
+//				cont = false;
+//			}
 		}
 		BookInventory.writeBooksTxt(bookList);
 		System.out.println("Goodbye! Thank you for visiting your virtual library.");
@@ -24,9 +26,9 @@ public class TerminalApp {
 	}
 
 	public static void greetUser() {
-
-		System.out.println("Welcome to the DPL Library Terminal. How may i help you today?");
-		System.out.println("------------------------------------------------------------------");
+		System.out.println("-------------------------");
+		System.out.println("How may I help you today?");
+		System.out.println("-------------------------");
 		System.out.println("1. Display all books");
 		System.out.println("2. Search by Keyword");
 		System.out.println("3. Search by Author");
@@ -36,13 +38,13 @@ public class TerminalApp {
 
 	public static void userSelect() {
 
-		int accessID = Validator.getInt(scnr, "Please select a menu item: ", 1, 5);
+		int accessID = Validator.getInt(scnr, "\nPlease select a menu item: ", 1, 5);
 
 		switch (accessID) {
 
 		case 1:
 			BookInventory.listBooks(bookList);
-			String choice = Validator.getString(scnr, "\n\nWould you like to checkout one of these items? y/n ");
+			String choice = Validator.getYN(scnr, "Would you like to checkout one of these items? y/n ");
 
 			if (choice.equalsIgnoreCase("y")) {
 				BookInventory.bookCheckout(bookList);
@@ -55,11 +57,11 @@ public class TerminalApp {
 			BookSearch.searchByAuthor();
 			break;
 		case 4:
-			BookInventory.bookReturn();
+			BookInventory.bookReturn(bookList);
 			break;
 		case 5:
 			BookInventory.writeBooksTxt(bookList);
-			System.out.println("Goodbye! Thank you for visiting your virtual library.");
+			System.out.println("Goodbye! Thank you for visiting.");
 			System.exit(0);
 			break;
 		}

@@ -12,10 +12,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//public static ArrayList<String> modifyName(ArrayList<String> names, int index) {
-//	names.set(index, "Grant Chirpus");
-//	return names;
-//}
 
 public class BookInventory {
 
@@ -31,7 +27,6 @@ public class BookInventory {
 
 		try {
 			FileReader readTxt = new FileReader(bookInventoryFile);
-			// LineNumberReader linesNum = new LineNumberReader(readTxt);
 			BufferedReader readbook = new BufferedReader(readTxt);
 
 			String[] bookInfo = new String[5];
@@ -52,7 +47,6 @@ public class BookInventory {
 				line = readbook.readLine();
 
 			}
-			// System.out.println(bookList.toString());
 			readbook.close();
 		} catch (IOException ex) {
 			System.out.println(ex.getMessage());
@@ -61,8 +55,6 @@ public class BookInventory {
 	}
 
 	public static void listBooks(ArrayList<Book> bookList) {
-		// ArrayList<Book> bookList = BookInventory.bookArray();
-
 		System.out.printf("\n%-4s %-28s %-24s %-5s\n", "ID", "Title", "Author", "Status");
 		System.out.println("------------------------------------------------------------------");
 
@@ -72,12 +64,11 @@ public class BookInventory {
 			System.out.printf("\n%-5d%-30s%-25s%-12s", b.getBookID(), b.getBookTitle(), b.getBookAuthor(),
 					b.getBookStatus());
 		}
-
-
+		System.out.println("\n");
 	}
 
 	public static void bookCheckout(ArrayList<Book> bookList) {
-		// change method so scanner not redeclared everywhere
+
 		int index = Validator.getInt(scnr, "Which book would you like to check out? (please enter the book ID) ");
 
 		for (int i = 0; i < bookList.size(); i++) {
@@ -87,34 +78,33 @@ public class BookInventory {
 					b.setBookStatus(BookStatus.CHECKEDOUT);
 					LocalDate due = LocalDate.now();
 					b.setBookDue(due.plusDays(14));
-					System.out.println("Successfully checked out and due on " + b.getBookDue());
+					System.out.println("\nYou have successfully checked out " + b.getBookTitle() + ". "
+							+ "Your due date is " + b.getBookDue() + ".\n");
 
 					writeBooksTxt(bookList);
 
 				} else {
-					System.out.println("Sorry, this book is unavailable.");
+					System.out.println("\nSorry, this book is unavailable.\n");
 				}
 			}
 		}
 	}
 
-	public static void bookReturn() {
+	public static void bookReturn(ArrayList<Book> bookList) {
 		listBooks(bookList);
 
 		int index = Validator.getInt(scnr, "\nWhich book would you like to return? (please enter the book ID) ");
-
-		// ArrayList<Book> bookList = BookInventory.bookArray();
 
 		for (int i = 0; i < bookList.size(); i++) {
 			Book bReturn = bookList.get(i);
 			if (bReturn.getBookID() == (index)) {
 				bReturn.setBookStatus(BookStatus.INLIBRARY);
 				bReturn.setBookDue(LocalDate.now());
-				System.out.println("Successfully returned " + bReturn.getBookTitle());
-				// testing book write method
+				System.out.println("\nYou have successfully returned " + bReturn.getBookTitle() + ".\n");
+				// Change Book Status to INLIBRARY in Text File
 				writeBooksTxt(bookList);
-//			} else {
-//				System.out.println("Sorry, this book cannot be returned.");
+			} else if (bReturn.getBookStatus() == (BookStatus.CHECKEDOUT)) {
+				System.out.println("Sorry, this book cannot be returned.");
 			}
 		}
 	}
@@ -131,7 +121,6 @@ public class BookInventory {
 				String record = bookList.get(i).getBookID() + "," + bookList.get(i).getBookTitle() + ","
 						+ bookList.get(i).getBookAuthor() + "," + bookList.get(i).getBookStatus() + ","
 						+ bookList.get(i).getBookDue() + "\r\n";
-				// System.out.println(record);
 				out.write(record);
 			}
 

@@ -57,7 +57,7 @@ public class BookSearch {
 		String enter;
 		do {
 			while (tryAgain) {
-				String userSearch = Validator.getString(scnr, "Please enter title name: ");
+				String userSearch = Validator.getString(scnr, "Please enter a title keyword: ");
 				System.out.printf("\n%-4s %-28s %-24s %-5s\n", "ID", "Title", "Author", "Status");
 				System.out.println("------------------------------------------------------------------");
 				for (int i = 0; i < BookInventory.bookArray().size(); i++) {
