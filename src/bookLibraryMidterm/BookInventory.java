@@ -62,9 +62,14 @@ public class BookInventory {
 
 	public static void listBooks(ArrayList<Book> bookList) {
 		// ArrayList<Book> bookList = BookInventory.bookArray();
+
+		System.out.printf("\n%-4s %-28s %-24s %-5s\n", "ID", "Title", "Author", "Status");
+		System.out.println("------------------------------------------------------------------");
+
 		for (int i = 0; i < bookList.size(); i++) {
 			Book b = bookList.get(i);
-			System.out.printf("\n%-12d%-30s%-30s%-12s", b.getBookID(), b.getBookTitle(), b.getBookAuthor(),
+
+			System.out.printf("\n%-5d%-30s%-25s%-12s", b.getBookID(), b.getBookTitle(), b.getBookAuthor(),
 					b.getBookStatus());
 		}
 
@@ -84,7 +89,6 @@ public class BookInventory {
 					b.setBookDue(due.plusDays(14));
 					System.out.println("Successfully checked out and due on " + b.getBookDue());
 
-					// testing book write method
 					writeBooksTxt(bookList);
 
 				} else {

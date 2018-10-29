@@ -26,6 +26,7 @@ public class TerminalApp {
 	public static void greetUser() {
 
 		System.out.println("Welcome to the DPL Library Terminal. How may i help you today?");
+		System.out.println("------------------------------------------------------------------");
 		System.out.println("1. Display all books");
 		System.out.println("2. Search by Keyword");
 		System.out.println("3. Search by Author");
@@ -41,7 +42,7 @@ public class TerminalApp {
 
 		case 1:
 			BookInventory.listBooks(bookList);
-			String choice = Validator.getString(scnr, "\nWould you like to checkout one of these items? y/n ");
+			String choice = Validator.getString(scnr, "\n\nWould you like to checkout one of these items? y/n ");
 
 			if (choice.equalsIgnoreCase("y")) {
 				BookInventory.bookCheckout(bookList);
