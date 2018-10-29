@@ -5,8 +5,6 @@ import java.util.Scanner;
 
 public class BookSearch {
 	static ArrayList<Book> chosenBook = new ArrayList<>();
-	ArrayList<String> bookAuthor = new ArrayList<>(30);
-	ArrayList<String> bookTitle = new ArrayList<>(30);
 	static Scanner scnr = new Scanner(System.in);
 
 	public static void main(String[] args) {
@@ -14,8 +12,14 @@ public class BookSearch {
 		for (int i = 0; i < BookInventory.bookArray().size(); i++) {
 			System.out.println(BookInventory.bookArray().get(i));// test information
 		}
-
-		searchByAuthor();
+		int testSelect = Validator.getInt(scnr, "Pick one or two: (test)");
+		if (testSelect == 1) {
+			searchByAuthor();
+		} else if (testSelect == 2) {
+			searchByTitle();
+		} else { 
+			System.out.println("Please select one or two.");
+		}
 //		System.out.println("Add to cart? (Y/N)");
 //
 //		String cartAdd = scnr.nextLine();
@@ -65,6 +69,8 @@ public class BookSearch {
 			}
 
 		} while (enter.equalsIgnoreCase("Y"));
+		
+		BookInventory.bookCheckout(chosenBook);
 	}
 
 	public static void searchByTitle() {
@@ -93,5 +99,7 @@ public class BookSearch {
 				tryAgain = true;
 			}
 		} while (enter.equalsIgnoreCase("Y"));
+		
+		BookInventory.bookCheckout(chosenBook);
 	}
 }
