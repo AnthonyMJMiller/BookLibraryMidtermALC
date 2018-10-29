@@ -12,14 +12,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class BookInventory {
 
 	private static Path filePath = Paths.get("books.txt");
 	private static File bookInventoryFile = filePath.toFile();
 	static Scanner scnr = new Scanner(System.in);
 	static ArrayList<Book> bookList = new ArrayList<Book>();
-
 
 	public static ArrayList<Book> bookArray() {
 
@@ -68,26 +66,33 @@ public class BookInventory {
 	}
 
 	public static void bookCheckout(ArrayList<Book> bookList) {
+		boolean cont = true;
 
-		int index = Validator.getInt(scnr, "Which book would you like to check out? (please enter the book ID) ");
+		do {
+			int index = Validator.getInt(scnr, "Which book would you like to check out? (please enter the book ID) ");
 
-		for (int i = 0; i < bookList.size(); i++) {
-			Book b = bookList.get(i);
-			if (b.getBookID() == (index)) {
-				if (b.getBookStatus() == BookStatus.INLIBRARY) {
-					b.setBookStatus(BookStatus.CHECKEDOUT);
-					LocalDate due = LocalDate.now();
-					b.setBookDue(due.plusDays(14));
-					System.out.println("\nYou have successfully checked out " + b.getBookTitle() + ". "
-							+ "Your due date is " + b.getBookDue() + ".\n");
+			for (int i = 0; i < bookList.size(); i++) {
+				Book b = bookList.get(i);
+				if (b.getBookID() == (index)) {
+					if (b.getBookStatus() == BookStatus.INLIBRARY) {
+						b.setBookStatus(BookStatus.CHECKEDOUT);
+						LocalDate due = LocalDate.now();
+						b.setBookDue(due.plusDays(14));
+						System.out.println("\nYou have successfully checked out " + b.getBookTitle() + ". "
+								+ "Your due date is " + b.getBookDue() + ".\n");
 
-					writeBooksTxt(bookList);
+						writeBooksTxt(bookList);
 
-				} else {
-					System.out.println("\nSorry, this book is unavailable.\n");
+					} else {
+						System.out.println("\nSorry, this book is unavailable.\n");
+					}
 				}
 			}
-		}
+			String choice = Validator.getYN(scnr, "Would you like to checkout another item? y/n ");
+			if (choice.equalsIgnoreCase("n")) {
+				cont = false;
+			}
+		} while (cont != false);
 	}
 
 	public static void bookReturn(ArrayList<Book> bookList) {
