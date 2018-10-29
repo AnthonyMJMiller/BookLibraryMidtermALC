@@ -1,2 +1,13 @@
 1,The Confessions,Jean-Jacques Rousseau,INLIBRARY,2018-10-29
 2,The Art of Loving,Erich Fromm,INLIBRARY,2018-10-29
+3,In Search of the Miraculous,P.D. Ouspensky,INLIBRARY,2018-10-29
+4,War and Peace,L.N. Tolstoy,INLIBRARY,2018-10-29
+5,Portnoy's Complaint,Philip Roth,INLIBRARY,2018-10-29
+6,Wuthering Heights,Emily Bronte,INLIBRARY,2018-10-29
+7,The Sorrows of Young Werther,Johann Wolfgang Goethe,INLIBRARY,2018-10-29
+8,The Armada,Garrett Mattingly,INLIBRARY,2018-10-29
+9,Listening to America,Bill Moyers,INLIBRARY,2018-10-29
+10,Jane Eyre,Charlotte Bronte,INLIBRARY,2018-10-29
+11,Anna Karenina,L. N. Tolstoy,INLIBRARY,2018-10-29
+12,J.S. Bach Vol. 1,Albert Schweitzer,INLIBRARY,2018-10-29
+13,Pride and Prejudice,Jane Austen,INLIBRARY,2018-10-29

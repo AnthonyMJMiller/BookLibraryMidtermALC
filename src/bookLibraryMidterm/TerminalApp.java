@@ -45,10 +45,8 @@ public class TerminalApp {
 
 			if (choice.equalsIgnoreCase("y")) {
 				BookInventory.bookCheckout(bookList);
-			} else {
-				System.out.println("false?");
 			}
-
+			break;
 		case 2:
 			BookSearch.searchByTitle();
 			break;

@@ -27,6 +27,7 @@ public class BookInventory {
 
 	public static ArrayList<Book> bookArray() {
 
+		ArrayList<Book> bookList = new ArrayList<Book>();
 
 		try {
 			FileReader readTxt = new FileReader(bookInventoryFile);
