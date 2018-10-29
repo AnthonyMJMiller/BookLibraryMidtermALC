@@ -22,10 +22,11 @@ public class BookInventory {
 	private static Path filePath = Paths.get("books.txt");
 	private static File bookInventoryFile = filePath.toFile();
 	static Scanner scnr = new Scanner(System.in);
+	static ArrayList<Book> bookList = new ArrayList<Book>();
+
 
 	public static ArrayList<Book> bookArray() {
 
-		ArrayList<Book> bookList = new ArrayList<Book>();
 
 		try {
 			FileReader readTxt = new FileReader(bookInventoryFile);
@@ -65,13 +66,7 @@ public class BookInventory {
 			System.out.printf("\n%-12d%-30s%-30s%-12s", b.getBookID(), b.getBookTitle(), b.getBookAuthor(),
 					b.getBookStatus());
 		}
-		String choice = Validator.getString(scnr, "\nWould you like to checkout one of these items? y/n ");
 
-		if (choice.equalsIgnoreCase("y")) {
-			bookCheckout(bookList);
-		} else {
-			System.out.println("false?");
-		}
 
 	}
 
@@ -88,6 +83,9 @@ public class BookInventory {
 					b.setBookDue(due.plusDays(14));
 					System.out.println("Successfully checked out and due on " + b.getBookDue());
 
+					// testing book write method
+					writeBooksTxt(bookList);
+
 				} else {
 					System.out.println("Sorry, this book is unavailable.");
 				}
@@ -96,18 +94,22 @@ public class BookInventory {
 	}
 
 	public static void bookReturn() {
-		int index = Validator.getInt(scnr, "Which book would you like to return? (please enter the book ID) ");
+		listBooks(bookList);
 
-		ArrayList<Book> bookList = BookInventory.bookArray();
+		int index = Validator.getInt(scnr, "\nWhich book would you like to return? (please enter the book ID) ");
+
+		// ArrayList<Book> bookList = BookInventory.bookArray();
 
 		for (int i = 0; i < bookList.size(); i++) {
 			Book bReturn = bookList.get(i);
 			if (bReturn.getBookID() == (index)) {
 				bReturn.setBookStatus(BookStatus.INLIBRARY);
-				bReturn.setBookDue(null);
+				bReturn.setBookDue(LocalDate.now());
 				System.out.println("Successfully returned " + bReturn.getBookTitle());
-			} else {
-				System.out.println("Sorry, this book cannot be returned.");
+				// testing book write method
+				writeBooksTxt(bookList);
+//			} else {
+//				System.out.println("Sorry, this book cannot be returned.");
 			}
 		}
 	}
@@ -115,14 +117,17 @@ public class BookInventory {
 	public static void writeBooksTxt(ArrayList<Book> bookList) {
 
 		try {
+			// clean this up--these are declared above. this for testing
+			Path filePath = Paths.get("books.txt");
+			File bookInventoryFile = filePath.toFile();
 			PrintWriter out = new PrintWriter(new FileOutputStream(bookInventoryFile));
 
 			for (int i = 0; i < bookList.size(); i++) {
 				String record = bookList.get(i).getBookID() + "," + bookList.get(i).getBookTitle() + ","
-						+ bookList.get(i).getBookAuthor() + "," + bookList.get(i).getBookStatus() + "\r\n";
+						+ bookList.get(i).getBookAuthor() + "," + bookList.get(i).getBookStatus() + ","
+						+ bookList.get(i).getBookDue() + "\r\n";
 				// System.out.println(record);
 				out.write(record);
-
 			}
 
 			out.close();
