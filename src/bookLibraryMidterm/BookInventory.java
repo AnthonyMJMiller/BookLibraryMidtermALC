@@ -18,7 +18,10 @@ public class BookInventory {
 	private static File bookInventoryFile = filePath.toFile();
 	static Scanner scnr = new Scanner(System.in);
 	static ArrayList<Book> bookList = new ArrayList<Book>();
+	static boolean cont = true;
+	static String choice;
 
+	// Create array of books bsaed off text file
 	public static ArrayList<Book> bookArray() {
 
 		ArrayList<Book> bookList = new ArrayList<Book>();
@@ -27,10 +30,12 @@ public class BookInventory {
 			FileReader readTxt = new FileReader(bookInventoryFile);
 			BufferedReader readbook = new BufferedReader(readTxt);
 
+			// create array with 5 values to hold book values
 			String[] bookInfo = new String[5];
 
 			String line = readbook.readLine();
 
+			// split values by comma and add to bookList aray
 			while (line != null) {
 				bookInfo = line.split(",");
 
@@ -39,6 +44,7 @@ public class BookInventory {
 				BookStatus bookEnum = BookStatus.valueOf(bookInfo[3]);
 				LocalDate bookDue = LocalDate.parse(bookInfo[4]);
 
+				// create book objects and add to bookList array
 				Book book = new Book(bookID, bookInfo[1], bookInfo[2], bookEnum, bookDue);
 				bookList.add(book);
 
@@ -52,6 +58,7 @@ public class BookInventory {
 		return bookList;
 	}
 
+	// method to list books
 	public static void listBooks(ArrayList<Book> bookList) {
 		System.out.printf("\n%-4s %-28s %-24s %-5s\n", "ID", "Title", "Author", "Status");
 		System.out.println("------------------------------------------------------------------");
@@ -65,12 +72,14 @@ public class BookInventory {
 		System.out.println("\n");
 	}
 
+	// method to CHECKOUT BOOKS
 	public static void bookCheckout(ArrayList<Book> bookList) {
-		boolean cont = true;
 
+		// loop for checking out books
 		do {
 			int index = Validator.getInt(scnr, "Which book would you like to check out? (please enter the book ID) ");
 
+			// for loop sets new status of book
 			for (int i = 0; i < bookList.size(); i++) {
 				Book b = bookList.get(i);
 				if (b.getBookID() == (index)) {
@@ -88,7 +97,7 @@ public class BookInventory {
 					}
 				}
 			}
-			String choice = Validator.getYN(scnr, "Would you like to checkout another item? y/n ");
+			choice = Validator.getYN(scnr, "Would you like to checkout another item? y/n ");
 			if (choice.equalsIgnoreCase("n")) {
 				cont = false;
 			}
@@ -99,19 +108,31 @@ public class BookInventory {
 		listBooks(bookList);
 
 		int index = Validator.getInt(scnr, "\nWhich book would you like to return? (please enter the book ID) ");
+		// subtract from bookList array index
+		Book bReturn = bookList.get(index - 1);
 
-		for (int i = 0; i < bookList.size(); i++) {
-			Book bReturn = bookList.get(i);
-			if (bReturn.getBookID() == (index)) {
-				bReturn.setBookStatus(BookStatus.INLIBRARY);
-				bReturn.setBookDue(LocalDate.now());
-				System.out.println("\nYou have successfully returned " + bReturn.getBookTitle() + ".\n");
-				// Change Book Status to INLIBRARY in Text File
-				writeBooksTxt(bookList);
-			} else if (bReturn.getBookStatus() == (BookStatus.CHECKEDOUT)) {
-				System.out.println("Sorry, this book cannot be returned.");
+		// check if book is checkedout
+		if (bReturn.getBookStatus() == BookStatus.INLIBRARY) {
+			System.out.println("\nYou cannot return " + bReturn.getBookTitle()
+					+ ". It's on the shelves. Please contact the front desk if you have questions. \n");
+			choice = Validator.getYN(scnr, "Would you like to return another item? y/n ");
+			if (choice.equalsIgnoreCase("y")) {
+				bookReturn(bookList);
 			}
+		} else if (bReturn.getBookStatus() == BookStatus.CHECKEDOUT) {
+			for (int i = 0; i < bookList.size(); i++) {
+				bReturn = bookList.get(i);
+				if (bReturn.getBookID() == (index)) {
+					bReturn.setBookStatus(BookStatus.INLIBRARY);
+					bReturn.setBookDue(LocalDate.now());
+					System.out.println("\nYou have successfully returned " + bReturn.getBookTitle() + ".\n");
+					// Change Book Status to INLIBRARY in Text File
+					writeBooksTxt(bookList);
+				}
+			}
+
 		}
+
 	}
 
 	public static void writeBooksTxt(ArrayList<Book> bookList) {
