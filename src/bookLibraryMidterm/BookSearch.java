@@ -18,7 +18,7 @@ public class BookSearch {
 		String enter;
 		do {
 			while (tryAgain) {
-			String userSearch = Validator.getString(scnr, "Please enter author name: ");
+			String userSearch = Validator.getString("Please enter author name: ");
 			
 				System.out.printf("\n%-4s %-28s %-24s %-5s\n", "ID", "Title", "Author", "Status");
 				System.out.println("------------------------------------------------------------------");
@@ -39,9 +39,9 @@ public class BookSearch {
 				}
 
 		} 
-			enter = Validator.getString(scnr, "\nDo you want to find another book? (Y/N) ");
+			enter = Validator.getString("\nDo you want to find another book? (Y/N) ");
 			while (!enter.equalsIgnoreCase("Y") && !enter.equalsIgnoreCase("N")) {
-				enter = Validator.getString(scnr, "Error! Please type Y or N: ");
+				enter = Validator.getString("Error! Please type Y or N: ");
 			}
 			if (enter.equalsIgnoreCase("Y")) {
 				tryAgain = true;
@@ -57,7 +57,7 @@ public class BookSearch {
 		String enter;
 		do {
 			while (tryAgain) {
-				String userSearch = Validator.getString(scnr, "Please enter a title keyword: ");
+				String userSearch = Validator.getString("Please enter a title keyword: ");
 				System.out.printf("\n%-4s %-28s %-24s %-5s\n", "ID", "Title", "Author", "Status");
 				System.out.println("------------------------------------------------------------------");
 				for (int i = 0; i < BookInventory.bookArray().size(); i++) {
@@ -75,9 +75,9 @@ public class BookSearch {
 				}
 
 			}
-			enter = Validator.getString(scnr, "\nDo you want to find another book? (Y/N) ");
+			enter = Validator.getString("\nDo you want to find another book? (Y/N) ");
 			while (!enter.equalsIgnoreCase("Y") && !enter.equalsIgnoreCase("N")) {
-				enter = Validator.getString(scnr, "Error! Please type Y or N: ");
+				enter = Validator.getString("Error! Please type Y or N: ");
 			}
 			if (enter.equalsIgnoreCase("Y")) {
 				tryAgain = true;

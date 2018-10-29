@@ -24,7 +24,7 @@ public class TerminalAppGUI extends JFrame {
 
 	public TerminalAppGUI() {
 		//Output Window Creation
-		super("DPL Library Terminal");
+		super("Art Garfunkel's Library Terminal");
 		setConsoleOut(new JTextArea(50, 50));
 		getConsoleOut().setEditable(false);
 		setLayout(new GridBagLayout());
