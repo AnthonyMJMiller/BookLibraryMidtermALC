@@ -11,6 +11,7 @@ public class Book {
 	private BookStatus bookStatus;
 	private LocalDate bookDue;
 	
+	//overloaded constructor to allow book to contain due date (bookDue)
 	public Book (int bookID, String bookTitle, String bookAuthor, BookStatus bookStatus, LocalDate bookDue) {
 		this.bookID = bookID;
 		this.bookAuthor = bookAuthor;

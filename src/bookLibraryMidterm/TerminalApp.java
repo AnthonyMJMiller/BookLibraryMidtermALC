@@ -7,8 +7,8 @@ import javax.swing.JOptionPane;
 
 public class TerminalApp extends TerminalAppGUI {
 	/*
-	 * Made variables universal in class to cut redundancy using same variables in
-	 * each method
+	  Made variables universal in class to cut redundancy calling same variables 
+	  in each method
 	 */
 	static Scanner scnr = new Scanner(System.in);
 	static boolean cont = true;
@@ -20,8 +20,8 @@ public class TerminalApp extends TerminalAppGUI {
 		
 		System.out.println("Welcome to Art Garfunkel's Library Terminal.\n");
 		/*
-		 *  While loop w/boolean to loop back to main menu until exit option
-		 *  selected
+		  While loop w/boolean to loop back to main menu until exit option
+		  selected
 		 */
 		while (cont) {
 			greetUser();
@@ -46,8 +46,8 @@ public class TerminalApp extends TerminalAppGUI {
 
 	public static void userSelect() {
 		/*
-		 *  We take in a number from user and use that number to navigate via case
-		 *  switch
+		   We take in a number from user and use that number to navigate via case
+		   switch
 		 */
 		int accessID = Validator.getInt("\nPlease select a menu item: ", 1, 5);
 		

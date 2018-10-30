@@ -12,6 +12,14 @@ public class BookSearch {
 	public BookSearch() {
 
 	}
+	
+	/*  Method gather string from user
+    Matches string with string content in BookInventory.getBookAuthor and
+    prints out information for these books
+    do while loop for search reusability on user's choice
+    Enters into BookInventory.bookCheckout method
+    Prints message if no matches appear
+*/
 
 	public static void searchByAuthor() {
 		boolean tryAgain = true;
@@ -24,12 +32,13 @@ public class BookSearch {
 				System.out.println("------------------------------------------------------------------");
 
 				for (int i = 0; i < BookInventory.bookArray().size(); i++) {
+					// Chained .toLowerCase method to ignore case sensitivity
 					if (BookInventory.bookArray().get(i).getBookAuthor().toLowerCase().contains(userSearch.toLowerCase())) {
 						Book b = bookList.get(i);
 
 						System.out.printf("\n%-5d%-30s%-25s%-12s", b.getBookID(), b.getBookTitle(), b.getBookAuthor(),
 								b.getBookStatus());
-						// bookList.add(BookInventory.bookArray().get(i));
+						
 						tryAgain = false;
 					}
 
@@ -51,7 +60,15 @@ public class BookSearch {
 		
 		BookInventory.bookCheckout(bookList);
 	}
-
+	
+	/*  Method gather string from user
+    Matches string with string content in BookInventory.getBookTitle and
+    prints out information for these books
+    do while loop for search reusability on user's choice
+    Enters into BookInventory.bookCheckout method
+    Prints message if no matches appear
+*/
+	
 	public static void searchByTitle() {
 		boolean tryAgain = true;
 		String enter;
@@ -66,7 +83,7 @@ public class BookSearch {
 
 						System.out.printf("\n%-5d%-30s%-25s%-12s", b.getBookID(), b.getBookTitle(), b.getBookAuthor(),
 								b.getBookStatus());
-						// bookList.add(BookInventory.bookArray().get(i));
+						
 						tryAgain = false;
 					} 
 				}
