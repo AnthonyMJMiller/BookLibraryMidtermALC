@@ -77,7 +77,7 @@ public class BookInventory {
 
 		// loop for checking out books
 		do {
-			int index = Validator.getInt(scnr, "Which book would you like to check out? (please enter the book ID) ");
+			int index = Validator.getInt("Which book would you like to check out? (please enter the book ID) ");
 
 			// for loop sets new status of book
 			for (int i = 0; i < bookList.size(); i++) {
@@ -97,7 +97,7 @@ public class BookInventory {
 					}
 				}
 			}
-			choice = Validator.getYN(scnr, "Would you like to checkout another item? y/n ");
+			choice = Validator.getYN("Would you like to checkout another item? y/n ");
 			if (choice.equalsIgnoreCase("n")) {
 				cont = false;
 			}
@@ -107,7 +107,7 @@ public class BookInventory {
 	public static void bookReturn(ArrayList<Book> bookList) {
 		listBooks(bookList);
 
-		int index = Validator.getInt(scnr, "\nWhich book would you like to return? (please enter the book ID) ");
+		int index = Validator.getInt("\nWhich book would you like to return? (please enter the book ID) ");
 		// subtract from bookList array index
 		Book bReturn = bookList.get(index - 1);
 
@@ -115,7 +115,7 @@ public class BookInventory {
 		if (bReturn.getBookStatus() == BookStatus.INLIBRARY) {
 			System.out.println("\nYou cannot return " + bReturn.getBookTitle()
 					+ ". It's on the shelves. Please contact the front desk if you have questions. \n");
-			choice = Validator.getYN(scnr, "Would you like to return another item? y/n ");
+			choice = Validator.getYN("Would you like to return another item? y/n ");
 			if (choice.equalsIgnoreCase("y")) {
 				bookReturn(bookList);
 			}

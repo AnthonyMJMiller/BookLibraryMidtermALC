@@ -72,7 +72,23 @@ public class Validator extends TerminalAppGUI {
 
 		return input;
 	}
-
+	//Validtor for GUI input
+	public static int getInt(String prompt) {
+		int i = 0;
+		boolean isValid = false;
+		while (isValid == false) {
+			System.out.print(prompt);
+			String gInput = JOptionPane.showInputDialog(getConsoleOut(), "Input Here: " );
+			int nv = Integer.parseInt(gInput);
+			if (nv > 0) {
+				i = nv;
+				isValid = true;
+			} else {
+				System.out.print("Please enter a valid number: ");
+			}
+		}
+		return i;
+	}
 	public static int getInt(Scanner sc, String prompt) {
 		int i = 0;
 		boolean isValid = false;

@@ -1,5 +1,12 @@
 package bookLibraryMidterm;
-
+/*
+ * DEVELOPED BY - 
+ * LINDSAY KARTY
+ * ANTHONY MILLER
+ * CARL JONES
+ * GC Midterm Project 10/30/2018
+ * Version 1.0.0
+ */
 import java.util.ArrayList;
 import java.util.Scanner;
 
