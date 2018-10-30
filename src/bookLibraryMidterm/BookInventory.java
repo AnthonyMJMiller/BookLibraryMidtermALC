@@ -60,16 +60,16 @@ public class BookInventory {
 
 	// method to list books
 	public static void listBooks(ArrayList<Book> bookList) {
-		System.out.printf("\n%-4s %-28s %-24s %-5s\n", "ID", "Title", "Author", "Status");
+		System.out.printf("\n%-10s %-55s %-40s %-12s\n", "ID", "Title", "Author", "Status");
 		System.out.println("------------------------------------------------------------------");
 
 		for (int i = 0; i < bookList.size(); i++) {
 			Book b = bookList.get(i);
 
-			System.out.printf("\n%-5d%-30s%-25s%-12s", b.getBookID(), b.getBookTitle(), b.getBookAuthor(),
+			System.out.printf("\n%-10d%-55s%-40s%-12s", b.getBookID(), b.getBookTitle(), b.getBookAuthor(),
 					b.getBookStatus());
 		}
-		System.out.println("\n");
+		System.out.println("\n\n");
 	}
 
 	// method to CHECKOUT BOOKS
@@ -77,7 +77,7 @@ public class BookInventory {
 
 		// loop for checking out books
 		do {
-			int index = Validator.getInt("Which book would you like to check out? (please enter the book ID) ");
+			int index = Validator.getInt("\nWhich book would you like to check out? (please enter the book ID) ");
 
 			// for loop sets new status of book
 			for (int i = 0; i < bookList.size(); i++) {

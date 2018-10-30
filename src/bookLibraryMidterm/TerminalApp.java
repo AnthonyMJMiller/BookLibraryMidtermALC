@@ -10,8 +10,6 @@ package bookLibraryMidterm;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.swing.JOptionPane;
-
 public class TerminalApp extends TerminalAppGUI {
 	/*
 	  Made variables universal in class to cut redundancy calling same variables 
@@ -25,7 +23,7 @@ public class TerminalApp extends TerminalAppGUI {
 		// We utilized GUI for user interaction in Library Terminal program
 		new TerminalAppGUI().setVisible(true);
 		
-		System.out.println("Welcome to Art Garfunkel's Library Terminal.\n");
+		System.out.println("Welcome to Art Garfunkel's Library Terminal.");
 		/*
 		  While loop w/boolean to loop back to main menu until exit option
 		  selected
@@ -41,7 +39,7 @@ public class TerminalApp extends TerminalAppGUI {
 	}
 
 	public static void greetUser() {
-		System.out.println("-------------------------");
+		System.out.println("\n-------------------------");
 		System.out.println("How may I help you today?");
 		System.out.println("-------------------------");
 		System.out.println("1. Display all books");

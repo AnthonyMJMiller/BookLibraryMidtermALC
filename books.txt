@@ -1,6 +1,6 @@
-1,The Confessions,Jean-Jacques Rousseau,INLIBRARY,2018-10-29
+1,The Confessions,Jean-Jacques Rousseau,CHECKEDOUT,2018-11-13
 2,The Art of Loving,Erich Fromm,INLIBRARY,2018-11-12
-3,In Search of the Miraculous,P.D. Ouspensky,CHECKEDOUT,2018-10-29
+3,In Search of the Miraculous,P.D. Ouspensky,INLIBRARY,2018-10-30
 4,War and Peace,L.N. Tolstoy,INLIBRARY,2018-10-29
 5,Portnoy's Complaint,Philip Roth,INLIBRARY,2018-10-29
 6,Wuthering Heights,Emily Bronte,CHECKEDOUT,2018-10-29
